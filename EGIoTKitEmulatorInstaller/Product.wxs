@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="d442e16c-8ad3-442b-9ac4-46449621ddfb" Name="EGIoTKit Emulator" Language="1033" Version="1.0.0.0" Manufacturer="EGIoTKit" UpgradeCode="68ebb2e5-d7dd-4536-981c-ad01580ec245">
+    <Package InstallerVersion="200" Compressed="yes" />
+    <Property Id="ROOTDRIVE"><![CDATA[C:\]]></Property>
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="EGIoTKitEmulator">
+          <Component Id="EMULATORBIN" DiskId="1" Guid="f10712a3-f558-4821-b7f0-b7e9950a8806">
+            <File Id="WindowsEGIoTKit.Emulator.CLR.dll" Name="WindowsEGIoTKit.Emulator.CLR.dll" Source="$(var.EGIoTKitEmulator.TargetDir)WindowsEGIoTKit.Emulator.CLR.dll" Vital="yes" KeyPath="no"  />
+            <File Id="EGIoTKitEmulator.exe" Name="EGIoTKitEmulator.exe" Source="$(var.EGIoTKitEmulator.TargetDir)EGIoTKitEmulator.exe" Vital="yes" KeyPath="no"  />
+            <File Id="EGIoTKitEmulator.exe.emulatorconfig" Name="EGIoTKitEmulator.exe.emulatorconfig" Source="$(var.EGIoTKitEmulator.TargetDir)EGIoTKitEmulator.exe.emulatorconfig" Vital="yes" KeyPath="no"  />
+            <File Id="EGIoTKitEmulator.vshost.exe" Name="EGIoTKitEmulator.vshost.exe" Source="$(var.EGIoTKitEmulator.TargetDir)EGIoTKitEmulator.vshost.exe" Vital="yes" KeyPath="no"  />
+            <File Id="EGIoTKitEmulator.vshost.exe.manifest" Name="EGIoTKitEmulator.vshost.exe.manifest" Source="$(var.EGIoTKitEmulator.TargetDir)EGIoTKitEmulator.vshost.exe.manifest" Vital="yes" KeyPath="no"  />
+            <File Id="Emulator.config" Name="Emulator.config" Source="$(var.EGIoTKitEmulator.TargetDir)Emulator.config" Vital="yes" KeyPath="no"  />
+            <File Id="Microsoft.SPOT.Emulator.dll" Name="Microsoft.SPOT.Emulator.dll" Source="$(var.EGIoTKitEmulator.TargetDir)Microsoft.SPOT.Emulator.dll" Vital="yes" KeyPath="no"  />
+            <File Id="Microsoft.SPOT.Emulator.Interface.dll" Name="Microsoft.SPOT.Emulator.Interface.dll" Source="$(var.EGIoTKitEmulator.TargetDir)Microsoft.SPOT.Emulator.Interface.dll" Vital="yes" KeyPath="no"  />
+            <RegistryKey Id='RegisterEmulatorToVS'
+             Root='HKLM' Key='Software\Wow6432Node\Microsoft\.NETMicroFramework\v4.3\Emulators\EGIoTKitEmulator'
+             ForceCreateOnInstall='yes' ForceDeleteOnUninstall='yes'>
+              <RegistryValue Type='string' Name='Path'
+                             Value='[INSTALLLOCATION]EGIoTKitEmulator.exe'/>
+              <RegistryValue Type='string' Name='Name'
+                             Value='EGIoTKit Emulator'/>
+            </RegistryKey>
+          </Component>
+          <Directory Id="EMULATORPICS" Name="Images">
+            <Component Id="EMULATORPICS" DiskId="1" Guid="7197065c-30ef-494e-b4db-8a3852b4046a">
+              <File Id="RelayOff.png" Name="RelayOff.png" Source="$(var.EGIoTKitEmulator.TargetDir)\Images\RelayOff.png" Vital="yes" KeyPath="no"  />
+              <File Id="RelayOn.png" Name="RelayOn.png" Source="$(var.EGIoTKitEmulator.TargetDir)\Images\RelayOn.png" Vital="yes" KeyPath="no"  />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="ProductFeature" Title="EGIoTKit Emulator" Level="1">
+      <ComponentRef	Id="EMULATORBIN"	/>
+      <ComponentRef Id="EMULATORPICS" />
+    </Feature>
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+  </Product>
+</Wix>
