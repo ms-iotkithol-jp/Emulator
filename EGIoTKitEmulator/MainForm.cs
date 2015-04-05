@@ -34,7 +34,7 @@ namespace EGIoTKitEmulator
                 TargetMaxTemperature = 34,
                 CurrentTemperature = 20,
                 TrueTemperature = 20,
-                TemperatureWhiteNoise = 0.02,
+                TemperatureWhiteNoise = 0.0001,
                 ChangeDurationSec = 5,
                 CurrentAccelX = 0,
                 CurrentAccelY = 0,
@@ -42,7 +42,7 @@ namespace EGIoTKitEmulator
                 TrueAccelX = 0,
                 TrueAccelY = 0,
                 TrueAccelZ = -1,
-                AccelWhiteNoiseLevel = 0.01,
+                AccelWhiteNoiseLevel = 0.001,
                 RelayStatus = false
             };
             wpfPage.IotKitHWStatus = hwStatus;
